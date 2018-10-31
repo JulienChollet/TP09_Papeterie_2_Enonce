@@ -123,7 +123,7 @@ public class ArticleDAOJdbcImpl {
     }
 private Article resultSetToArticle(ResultSet resultSet) throws SQLException {
     Article article = null ;
-    if(resultSet.getString("type").equals("Stylo")){
+    if("Stylo".equals(resultSet.getString("type").trim())){
         article = new Stylo();
         ((Stylo) article).setCouleur(resultSet.getString("couleur"));
     }else {
@@ -188,7 +188,7 @@ private Article resultSetToArticle(ResultSet resultSet) throws SQLException {
                 preparedStatement.setString(7, ((Stylo) a1).getCouleur());
                 preparedStatement.setString(8,a1.getClass().getSimpleName());
             }
-            if(a1 instanceof Ramette){
+            if (a1 instanceof Ramette){
                 preparedStatement.setInt(6,((Ramette) a1).getGrammage());
                 preparedStatement.setString(7,null);
                 preparedStatement.setString(8,a1.getClass().getSimpleName());
